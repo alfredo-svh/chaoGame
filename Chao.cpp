@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 #include <iostream>
 #include "Chao.h"
 
@@ -14,9 +15,7 @@ Chao::Chao(uint8_t egg_color)
 	_name="";
 	_garden=NO_GARDEN;
 	_happiness=0;
-	_reset = 1;
-	_rem_lifespan1 = 3800;
-	_rem_lifespan2 = 3800;
+	_rem_lifespan = 3800;
 	_reincarnations = 0;
 	_animal_behaviors = F_NOAN;
 	_classroom_skills = NO_ABIL;
@@ -77,7 +76,7 @@ Chao::Chao(uint8_t egg_color)
 	}
 
 	_mating = 0;
-	_hunger = 2000;
+	_hunger = 4000;
 	_sleepiness = 0;
 	_tiredness = 0;
 	_boredom = 1000;
@@ -112,92 +111,14 @@ Chao::Chao(uint8_t egg_color)
 	_normal_carefree = (rand() %201) - 100;
 	_fickle = (rand() %201) - 100;
 
-
-	switch(egg_color){
-		case NORMAL_EGG:
-		case NORMAL_SHI:
-			_color = _color1 = _color2 = NORMAL_COLOR;
-			break;
-		case YELLOW_MONO:
-		case YELLOW_TWO:
-		case YELLOW_SHI_MONO:
-		case YELLOW_SHI_TWO:
-			_color = _color1 = _color2 = YELLOW;
-			break;
-        case WHITE_MONO:
-        case WHITE_TWO:
-        case WHITE_SHI_MONO:
-        case WHITE_SHI_TWO:
-            _color = _color1 = _color2 = WHITE;
-            break;
-        case BROWN_MONO:
-        case BROWN_TWO:
-        case BROWN_SHI_MONO:
-        case BROWN_SHI_TWO:
-            _color = _color1 = _color2 = BROWN;
-            break;
-        case SKY_BLUE_MONO:
-        case SKY_BLUE_TWO:
-        case SKY_BLUE_SHI_MONO:
-        case SKY_BLUE_SHI_TWO:
-            _color = _color1 = _color2 = SKY_BLUE;
-            break;
-        case PINK_MONO:
-        case PINK_TWO:
-        case PINK_SHI_MONO:
-        case PINK_SHI_TWO:
-            _color = _color1 = _color2 = PINK;
-            break;
-        case BLUE_MONO:
-        case BLUE_TWO:
-        case BLUE_SHI_MONO:
-        case BLUE_SHI_TWO:
-            _color = _color1 = _color2 = BLUE;
-            break;
-        case GREY_MONO:
-        case GREY_TWO:
-        case GREY_SHI_MONO:
-        case GREY_SHI_TWO:
-            _color = _color1 = _color2 = GREY;
-            break;
-        case GREEN_MONO:
-        case GREEN_TWO:
-        case GREEN_SHI_MONO:
-        case GREEN_SHI_TWO:
-            _color = _color1 = _color2 = GREEN;
-            break;
-        case RED_MONO:
-        case RED_TWO:
-        case RED_SHI_MONO:
-        case RED_SHI_TWO:
-            _color = _color1 = _color2 = RED;
-            break;
-        case LIME_GREEN_MONO:
-        case LIME_GREEN_TWO:
-        case LIME_GREEN_SHI_MONO:
-        case LIME_GREEN_SHI_TWO:
-            _color = _color1 = _color2 = LIME_GREEN;
-            break;
-        case PURPLE_MONO:
-        case PURPLE_TWO:
-        case PURPLE_SHI_MONO:
-        case PURPLE_SHI_TWO:
-            _color = _color1 = _color2 = PURPLE;
-            break;
-        case ORANGE_MONO:
-        case ORANGE_TWO:
-        case ORANGE_SHI_MONO:
-        case ORANGE_SHI_TWO:
-            _color = _color1 = _color2 = ORANGE;
-            break;
-        case BLACK_MONO:
-        case BLACK_TWO:
-        case BLACK_SHI_MONO:
-        case BLACK_SHI_TWO:
-            _color = _color1 = _color2 = BLACK;
-            break;
-
-	};
+	if(egg_color<=BLACK_MONO){
+		_color=_color1=_color2=egg_color;
+	}else if(egg_color<=BLACK_TWO){
+		_color = _color1 =_color2 = egg_color - BLACK_MONO;
+	}else if(egg_color<=BLACK_SHI_MONO){
+		_color = _color1 =_color2 = egg_color - NORMAL_SHI;
+	}else
+		_color = _color1 =_color2 = egg_color - BLACK_SHI_MONO;
 
 }
 
@@ -208,8 +129,19 @@ Chao::Chao(Chao parent1, Chao parent2)
 }
 
 
-void Chao::increase_stat(uint8_t stat, uint8_t val)
+void Chao::increase_stat(uint8_t stat, int8_t val)
 {
+	if(val<0){
+		val = -val;
+
+		if(_bars[stat] - val <0){
+			_bars[stat]=0;
+		}
+		else{
+			_bars[stat] -= val;
+		}
+	}
+
 	if(_bars[stat] + val <=99)
 		_bars[stat] += val;
 	
@@ -257,32 +189,98 @@ void Chao::heart(uint8_t character)
 
 }
 
-void Chao::reset()
+void Chao::reset() //aka reincarnate()
 {
-	//called by reincarnate
+	if(_type %3 ==0){		//hero
+		_alignment = 1.0;
+	}else if(_type%3==1){	//dark
+		_alignment = -1.0;
+	}else{					//neutral
+		_alignment =0.0;
+	}
+	_rem_lifespan = 3800;
+	_animal_behaviors =0;
+	_run_power = 0.0;
+	_swim_fly = 0.0;
+	_transformation_magnitude = 0.0;
 
-	//TODO: reset what needs to be reset
+	for(int i=0;i<7;i++){
+		_bars[i] = 0;
+		_levels[i] = 1;
+		_points[i] /= 10;
+	}
 
-	_type = CHILD;
+	_mating =0;
+
+	_type = EGG;
 	_reincarnations++;
 }
 
 uint8_t Chao::evolve()
 {
+	if(_swim_fly <= -0.5 && -_swim_fly >= fabs(_run_power)){
+		_type = NEU_SWI;
+		if(_grades[SWIM]<S){
+			_grades[SWIM]++;
+			_grades1[SWIM]++;
+		}
 
-	//TODO: check for && set values for Chaos chao, increase stamina
-	//TODO: check vlues, set type, increase rank
+	}else if(fabs(_run_power) >=0.5 && fabs(_run_power)>= _swim_fly){
+		if(_run_power < 0.0){
+			_type = NEU_RUN;
+			if(_grades[RUN]<S){
+				_grades[RUN]++;
+				_grades1[RUN]++;
+			}
+		}
+		else{
+			_type=NEU_POW;
+			if(_grades[POWER]<S){
+				_grades[POWER]++;
+				_grades1[POWER]++;
+			}
+		}
+	}else if(_swim_fly>=0.5){
+		_type = NEU_FLY;
+		if(_grades[FLY]<S){
+			_grades[FLY]++;
+			_grades1[FLY]++;
+		}
+	}else{
+		if(_reincarnations>=2 && _happiness>=80 && (_animal_behaviors & 0b111111111111111) == 0b111111111111111){
+			_type = NEU_CHAOS;
+			_eyes = GREEN_CHAOS;
+			_mouth = 255;
+			_emotiball = NORMAL;
+			_hidden_feet = false;
+
+			for(int i=0;i<8;i++){
+				_bodyparts[i]=0;
+			}
+		}
+		else
+			_type = NEU_NOR;
+
+		if(_grades[STAMINA]<S){
+			_grades[STAMINA]++;
+			_grades1[STAMINA]++;
+		}
+	}
 
 
 	//set alignment
 	if(_alignment>=0.5){ //hero
+		if(_type==NEU_CHAOS)
+			_eyes++;
 		_type++;
 	}
 	else if(_alignment<=-0.5){ //dark
+		if(_type==NEU_CHAOS)
+			_eyes+=2;
 		_type+=2;
 	}
 
-	//reset alignment, transformations
+	//reset sliders
 	_alignment = 0;
 	_run_power =0;
 	_swim_fly = 0;
@@ -312,10 +310,6 @@ void Chao::name_chao(std::string name)
 
 void Chao::eat(uint8_t fruit, uint8_t character)
 {
-	//TODO fix overflowing increases/decreases
-
-
-
 	heart(character);
 
 	if(_hunger<=500)
@@ -339,14 +333,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
 	}
 
 	if(_type==CHILD){
-		if(_rem_lifespan1 >= 9987)
-			_rem_lifespan1 = 9999;
+		if(_rem_lifespan >= 9979)
+			_rem_lifespan = 9999;
 		else
-			_rem_lifespan1+=12;
-		if(_rem_lifespan2 >= 9979)
-			_rem_lifespan2 = 9999;
-		else
-			_rem_lifespan2+=20;
+			_rem_lifespan+=20;
 	}
 
 	switch(fruit){
@@ -355,7 +345,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
 			if(_type==CHILD){
 				_transformation_magnitude+=0.02;
 			}else{
-				_transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+					_transformation_magnitude+=0.005;
 			}
 			break;
 			
@@ -364,7 +357,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -373,7 +369,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -382,7 +381,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -393,7 +395,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.012;
+				if(_transformation_magnitude >=1.1988)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.012;
             }   
             break;
 
@@ -403,7 +408,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
                 _transformation_magnitude+=0.02;
 				_alignment+=0.150;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -413,7 +421,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
                 _transformation_magnitude+=0.02;
 				_alignment-=0.150;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -422,7 +433,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -431,7 +445,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -440,7 +457,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -449,7 +469,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
 				_mating = 10000;
             }   
             break;
@@ -463,7 +486,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 
@@ -474,7 +500,10 @@ void Chao::eat(uint8_t fruit, uint8_t character)
             if(_type==CHILD){
                 _transformation_magnitude+=0.02;
             }else{
-                _transformation_magnitude+=0.004;
+				if(_transformation_magnitude >=1.1995)
+					_transformation_magnitude = 1.2;
+				else
+                	_transformation_magnitude+=0.005;
             }   
             break;
 	};
@@ -551,80 +580,123 @@ void Chao::abuse(uint8_t character)
 
 void Chao::take_animal(uint8_t animal, uint8_t character)
 {
-	//TODO: fix overflowing increase/decrease
-	//TODO: foreach animal: increase stats, transformation, behaviors, bodyParts, effects
-	//TODO: research bodyparts, stats
+	//TODO: foreach: increase stats, transformation, behaviors, bodyParts(not CHAOS), EFFECTS!!!
+	//TODO: reserch effects: feet bool, emotiball bool
 
 	switch(_animal_behaviors){
 		case(PENGUIN):
 			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
 
 			if(_type==CHILD){
-				_swim_fly-=0.1;
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
 			}else{
-				_swim_fly-=0.05;
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
 			}
 
 			break;
 	};
 	increase_stat(LUCK, 20);
 	increase_stat(INTELLIGENCE, 20);
-	//TODO move alignment by 0.025
+	if(character%2==0){
+		if(_alignment>=0.975)
+			_alignment = 1.0;
+		else
+			_alignment+=0.025;
+	}else{
+		if(_alignment<=-0.975)
+			_alignment= -1.0;
+		else
+			_alignment-=0.025;
+	}
 
 }
 
 void Chao::take_drive(uint8_t drive, uint8_t character)
 {
-	//TODO fix overflow
 	switch(drive){
 		case YELLOW_DRIVE:
 			increase_stat(SWIM, 24);
-			if(_swim_fly>=-0.95){
-				if(_type==CHILD){
-					_swim_fly-=0.05;
-				}else{
-					_swim_fly-=0.025;
-				}
+			if(_type==CHILD){
+				if(_swim_fly<=-0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly -=0.05;
+			}else{
+                if(_swim_fly<=-0.975)
+                    _swim_fly = -1.0;
+                else
+                    _swim_fly -=0.025;
 			}
 			break;
 
 		case PURPLE_DRIVE:
 			increase_stat(FLY, 24);
-			if(_swim_fly<=0.95){
-            	if(_type==CHILD){
-                	_swim_fly+=0.05;
-            	}else{
-                	_swim_fly+=0.025;
-            	}
-			}
+            if(_type==CHILD){
+                if(_swim_fly>=0.95)
+                    _swim_fly = 1.0;
+                else
+                    _swim_fly +=0.05;
+            }else{
+                if(_swim_fly>=0.975)
+                    _swim_fly = 1.0;
+                else
+                    _swim_fly +=0.025;
+            }
             break;
 
 		case GREEN_DRIVE:
 			increase_stat(RUN, 24);
-			if(_run_power >=-0.95){
-            	if(_type==CHILD){
-                	_run_power-=0.05;
-            	}else{
-                	_run_power-=0.025;
-            	}
-			}
+            if(_type==CHILD){
+                if(_run_power<=-0.95)
+                    _run_power = -1.0;
+                else
+                    _run_power -=0.05;
+            }else{
+                if(_run_power<=-0.975)
+                    _run_power = -1.0;
+                else
+                    _run_power -=0.025;
+            }
             break;
 
 		case RED_DRIVE:
 			increase_stat(POWER, 24);
-			if(_run_power<=0.95){
-            	if(_type==CHILD){
-                	_run_power+=0.05;
-            	}else{
-                	_run_power+=0.025;
-            	}
-			}
+            if(_type==CHILD){
+                if(_run_power>=0.95)
+                    _run_power = 1.0;
+                else
+                    _run_power +=0.05;
+            }else{
+                if(_run_power>=0.975)
+                    _run_power = 1.0;
+                else
+                    _run_power +=0.025;
+            }
             break;
 	};
 
 	increase_stat(LUCK, 40);
 	increase_stat(INTELLIGENCE, 20);
-	//TODO: move alignment by 0.025
+	if(character%2==0){
+		_alignment+=0.025;
+	}else{
+		_alignment-=0.025;
+	}
 
 }
 

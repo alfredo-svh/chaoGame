@@ -10,9 +10,7 @@ class Chao
 	std::string _name;
 	uint8_t _garden;
 	int8_t _happiness;
-	bool _reset;
-	uint16_t _rem_lifespan1;
-	uint16_t _rem_lifespan2;
+	uint16_t _rem_lifespan;
 	uint16_t _reincarnations;
 	uint32_t _animal_behaviors;
 	unsigned int _classroom_skills;
@@ -100,7 +98,7 @@ class Chao
 	int8_t _fickle;
 
 
-	void increase_stat(uint8_t stat, uint8_t val);
+	void increase_stat(uint8_t stat, int8_t val);
 	void heart(uint8_t character);
 
 public:
