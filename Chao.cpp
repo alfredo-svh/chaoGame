@@ -609,7 +609,540 @@ void Chao::take_animal(uint8_t animal, uint8_t character)
 			}
 
 			break;
+			
+		case(SEAL):
+			_animal_behaviors = _animal_behaviors | F_SEAL;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+		
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		case(PENGUIN):
+			_animal_behaviors = _animal_behaviors | F_PENGUIN;
+			if(_type< NEU_CHAOS){
+				_bodyparts[ARMS] = PENGUIN;
+				_bodyparts[FOREHEAD] = PENGUIN;
+				_bodyparts[LEGS] = PENGUIN;
+			}
+			increase_stat(SWIM, 44);
+			increase_stat(FLY, -4);
+			increase_stat(RUN, 8);
+			increase_stat(POWER, -16);
+
+			if(_type==CHILD){
+				if(_swim_fly<=-0.9)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.1;
+			}else{
+				if(_swim_fly<=0.95)
+					_swim_fly = -1.0;
+				else
+					_swim_fly-=0.05;
+			}
+
+			break;
+			
+		
 	};
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	increase_stat(LUCK, 20);
 	increase_stat(INTELLIGENCE, 20);
 	if(character%2==0){
