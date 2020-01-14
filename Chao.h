@@ -14,7 +14,7 @@ class Chao
 	uint16_t _rem_lifespan1;
 	uint16_t _rem_lifespan2;
 	uint16_t _reincarnations;
-	unsigned int _animal_behaviors;
+	uint32_t _animal_behaviors;
 	unsigned int _classroom_skills;
 	uint16_t _toys;
 
@@ -84,11 +84,20 @@ class Chao
 	int8_t _stomach_ache;
 
 	uint8_t _fav_fruit;
+
 	int8_t _normal_curious;
-	int8_t _cry_energetic;
+	int8_t _kindness;
+	int8_t _crybaby_energetic;
 	int8_t _naive_normal;
-	int8_t _normal_eater;
+	int8_t _sollitude;
+	int8_t _vitality;
+	int8_t _normal_bigeater;
+	int8_t _regain;
+	int8_t _skillful;
+	int8_t _charm;
+	int8_t _chatty;
 	int8_t _normal_carefree;
+	int8_t _fickle;
 
 
 	void increase_stat(uint8_t stat, uint8_t val);
