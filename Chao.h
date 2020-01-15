@@ -5,6 +5,7 @@
 #include <string>
 #include "enums.h"
 
+
 class Chao
 {
 	std::string _name;
@@ -73,6 +74,8 @@ class Chao
 	uint8_t _fav_fruit;
 
 
+	uint8_t evolve();
+	bool die();
 	void move_transformation(uint8_t stat, float value);
 	void move_alignment(float value);
 	void increase_stat(uint8_t stat, int8_t val);
@@ -88,18 +91,14 @@ public:
 
 	int8_t happiness(){ return _happiness;}
 
+	void born(uint8_t garden);
 	void reset();
-	void born(){ _type=CHILD; }
-	uint8_t evolve();
-	bool die();
-
-
 	void name_chao(std::string name);
 	void eat(uint8_t fruit, uint8_t character);
 	void pet(uint8_t character);
 	void pickup(uint8_t character);
 	void drop(uint8_t garden);
-	void thrown(uint8_t character);
+	void thrown(uint8_t character, uint8_t garden);
 	void abuse(uint8_t character);
 	void take_animal(uint8_t animal, uint8_t character);
 	void take_drive(uint8_t color, uint8_t character);
@@ -111,7 +110,7 @@ public:
 
 };
 
-Chao mate(Chao& chao1, Chao& chao2);
+//Chao mate(Chao& chao1, Chao& chao2);
 bool die(Chao& chao);
 
 

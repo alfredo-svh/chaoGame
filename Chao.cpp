@@ -5,9 +5,11 @@
 #include <vector>
 #include "Chao.h"
 
-
-
 using namespace std;
+
+extern uint16_t garden;
+extern uint16_t character;
+   
 
 Chao::Chao(uint8_t egg_color)
 {
@@ -223,6 +225,7 @@ void Chao::heart(uint8_t character)
 	uint8_t chance = rand() %4;
 
 	if(chance==1){
+		cout<<"<3"<<endl;
 		if(_happiness<100)
 			_happiness++;
 
@@ -271,6 +274,12 @@ void Chao::reset() //aka reincarnate()
 
 	_type = EGG;
 	_reincarnations++;
+}
+
+void Chao::born(uint8_t garden)
+{
+	_type = CHILD;
+	_garden = garden;
 }
 
 uint8_t Chao::evolve()
@@ -584,8 +593,14 @@ void Chao::pickup(uint8_t character)
 
 }
 
-void Chao::thrown(uint8_t character)
+void Chao::drop(uint8_t garden){
+	_garden = garden;
+}
+
+void Chao::thrown(uint8_t character, uint8_t garden)
 {
+	drop(garden);
+
 	if(_happiness<=-95)
         _happiness = -100;
     else
