@@ -62,44 +62,25 @@ class Chao
 
 	int8_t _bonds[6];
 
-	uint16_t _mating;
-	uint16_t _hunger;
-	uint16_t _sleepiness;
-	uint16_t _tiredness;
-	uint16_t _boredom;
-	uint16_t _energy;
+	uint16_t _emotions[6];
 
-	uint8_t _joy;
-	uint8_t _cry;
-	uint8_t _fear;
-	uint8_t _dizziness;
+	uint8_t _behaviors[4];
 
-	int8_t _cough;
-	int8_t _cold;
-	int8_t _rash;
-	int8_t _runny_nose;
-	int8_t _hiccups;
-	int8_t _stomach_ache;
+	int8_t _health[6];
+
+	int8_t _personality[5];
 
 	uint8_t _fav_fruit;
 
-	int8_t _normal_curious;
-	int8_t _kindness;
-	int8_t _crybaby_energetic;
-	int8_t _naive_normal;
-	int8_t _sollitude;
-	int8_t _vitality;
-	int8_t _normal_bigeater;
-	int8_t _regain;
-	int8_t _skillful;
-	int8_t _charm;
-	int8_t _chatty;
-	int8_t _normal_carefree;
-	int8_t _fickle;
 
-
+	void move_transformation(uint8_t stat, float value);
+	void move_alignment(float value);
 	void increase_stat(uint8_t stat, int8_t val);
+	void remove_animalpart();
 	void heart(uint8_t character);
+	void medicine(uint8_t sickness);
+	void personality();
+	void win(uint8_t medal, uint8_t toy);
 
 public:
 	Chao(uint8_t egg_colour);
@@ -123,9 +104,10 @@ public:
 	void take_animal(uint8_t animal, uint8_t character);
 	void take_drive(uint8_t color, uint8_t character);
 	void take_hat(uint8_t hat);
-	void win(uint8_t medal, uint8_t toy);
+	void race(uint8_t course);
+	void karate(uint8_t lvl);
 	void learn(uint8_t lesson);
-	void medicine(uint8_t sickness);
+	void doctor();
 
 };
 

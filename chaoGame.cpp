@@ -8,9 +8,10 @@
 using namespace std;
 
 int main(){
-	int input;
-	int egg_color;
-	int character;
+	uint16_t input;
+	uint16_t egg_color;
+	uint16_t character;
+	string name;
 	srand(time(NULL));
 
 	cout << "WELCOME TO CHAO WORLD"<<endl;
@@ -29,6 +30,7 @@ int main(){
 
 		cout << "You got a " << egg_color << "-colored egg! Wait for it to hatch."<<endl;
 		this_thread::sleep_for(chrono::seconds(3));
+		one.born();
 		cout << "The egg hatched! Your new chao is born!"<<endl;
 
 		while(1){
@@ -36,6 +38,14 @@ int main(){
 			cin>> input;
 
 			switch(input){
+				case 1:
+					cout<<"Name your Chao!"<<endl;
+					cin >> name;
+					one.name_chao(name);
+					break;
+				case 2:
+					one.doctor();
+					break;
 				default:
 					cout << "Goodbye! Changes will not be saved"<<endl;
 					return 0;
