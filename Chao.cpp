@@ -190,6 +190,7 @@ void Chao::remove_animalpart(){
 
 void Chao::increase_stat(uint8_t stat, int8_t val)
 {
+	//TODO read wiki/stats/points
 	if(val<0){
 		val = -val;
 
@@ -1280,10 +1281,24 @@ void Chao::race(uint8_t course){
 	};
 }
 
-void Chao::karate(uint8_t lvl){
+void Chao::karate(){
+	//TODO: add karate level var to class
+	//	show in doctor
+	//TODO: perfect algorithm
 	srand(time(NULL));
-	lvl = lvl*5 + (rand()%5);
-	//TODO algorithm
+	uint8_t lvl = karate_lvl+1; //oponent's level: 1-16
+	
+    	uint16_t me = _points[STAMINA]/3000*16;
+    
+    	float y = 1/(1+exp(lvl-me));
+    	y*=100;
+    
+    	int x = rand()%100;
+    
+    
+    	if(x<=y)
+        	cout<<"Congrats! You won!"<<endl<<endl;
+    	cout "You lost."<<endl<<endl;
 }
 
 void Chao::learn(uint8_t lesson)
