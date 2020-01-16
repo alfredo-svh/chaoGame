@@ -190,7 +190,6 @@ void Chao::remove_animalpart(){
 
 void Chao::increase_stat(uint8_t stat, int8_t val)
 {
-	//TODO read wiki/stats/points
 	if(val<0){
 		val = -val;
 
@@ -211,7 +210,10 @@ void Chao::increase_stat(uint8_t stat, int8_t val)
 
 		_bars[stat] = (val+_bars[stat])%100;
 		_levels[stat]++;
-		_points[stat]+= (_grades[stat]*3) + 13 + r;
+		if((stat==LUCK || stat==INTELLIGENCE) && _points[stat]+(_grades[stat]*3) + 13 + r) >=4000)
+			_points[stat] = 4000;
+		else
+			_points[stat]+= (_grades[stat]*3) + 13 + r;
 
 
 	}
