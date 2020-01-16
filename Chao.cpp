@@ -1283,24 +1283,32 @@ void Chao::race(uint8_t course){
 	};
 }
 
-void Chao::karate(){
-	//TODO: add karate level var to class
+void Chao::karate(uint8_t lvl){//0-3 tournament lvl
+	//TODO: add _karate_level var to class
 	//	show in doctor
 	//TODO: perfect algorithm
-	srand(time(NULL));
-	uint8_t lvl = karate_lvl+1; //oponent's level: 1-16
-	
-    	uint16_t me = _points[STAMINA]/3000*16;
-    
-    	float y = 1/(1+exp(lvl-me));
-    	y*=100;
-    
-    	int x = rand()%100;
-    
-    
-    	if(x<=y)
-        	cout<<"Congrats! You won!"<<endl<<endl;
-    	cout "You lost."<<endl<<endl;
+	bool won =true;
+	uint16_t me = _points[STAMINA]/3000*16;
+	lvl*=5;
+	for(int i=0;i<5;i++){
+		srand(time(NULL));
+
+		float y = 1/(1+exp(lvl-me));
+		y*=100;
+
+		int x = rand()%100;
+
+
+		if(x<=y){
+			cout<<"Congrats! You won!"<<endl;
+			lvl++;
+			//TODO: increase karate_level if appropiate
+		}else{
+			cout "You lost."<<endl<<endl;
+			return;
+		}
+	}
+	cout<<"Congratulations! You won the tournament!"<<endl<<endl;
 }
 
 void Chao::learn(uint8_t lesson)
