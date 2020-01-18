@@ -57,6 +57,13 @@ int main(){
 					cout<<"Your chao enjoyed your petting"<<endl<<endl;
 					break;
 
+				case 4:
+					cout<<"Welcome to Chao karate. Select your level (1-4)"<<endl;
+					cin >> input;
+					input--;
+					if(input<4)
+						chao1.karate(input);
+
 				default:
 					cout << "Goodbye! Changes will not be saved"<<endl;
 					return 0;

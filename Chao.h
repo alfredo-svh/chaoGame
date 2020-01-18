@@ -73,6 +73,12 @@ class Chao
 
 	uint8_t _fav_fruit;
 
+	bool _medals[DARK_MEDAL];
+	uint8_t _karate_lvl;
+	unsigned _wins;
+	unsigned _losses;
+	unsigned _draws;
+
 
 	uint8_t evolve();
 	bool die();

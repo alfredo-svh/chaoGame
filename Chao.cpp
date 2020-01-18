@@ -94,6 +94,12 @@ Chao::Chao(uint8_t egg_color)
 	for(int i=0;i<6;i++)
 		_health[i]=100;
 
+	_karate_lvl=_wins=_losses=_draws=0;
+	for(int i=0;i<DARK_MEDAL;i++){
+		_medals[i]=false;
+	}
+
+
 	_fav_fruit = rand() % 8;
 	_fav_fruit1 = _fav_fruit2 = _fav_fruit;
 
@@ -210,7 +216,7 @@ void Chao::increase_stat(uint8_t stat, int8_t val)
 
 		_bars[stat] = (val+_bars[stat])%100;
 		_levels[stat]++;
-		if((stat==LUCK || stat==INTELLIGENCE) && _points[stat]+(_grades[stat]*3) + 13 + r) >=4000)
+		if((stat==LUCK || stat==INTELLIGENCE) && _points[stat]+(_grades[stat]*3) + 13 + r >=4000)
 			_points[stat] = 4000;
 		else
 			_points[stat]+= (_grades[stat]*3) + 13 + r;
@@ -1274,6 +1280,7 @@ void Chao::win(uint8_t medal_prize, uint8_t toy_prize=0)
 {
 	_toys = _toys | toy_prize;
 	_medal = medal_prize;
+	_medals[medal_prize-1]= true;
 
 }
 
@@ -1284,11 +1291,8 @@ void Chao::race(uint8_t course){
 }
 
 void Chao::karate(uint8_t lvl){//0-3 tournament lvl
-	//TODO: add _karate_level var to class
-	//	show in doctor
-	//TODO: perfect algorithm
-	bool won =true;
-	uint16_t me = _points[STAMINA]/3000*16;
+	//TODO: perfect algorithm to include all stats
+	uint16_t me = _points[STAMINA]/3000*21;
 	lvl*=5;
 	for(int i=0;i<5;i++){
 		srand(time(NULL));
@@ -1299,12 +1303,19 @@ void Chao::karate(uint8_t lvl){//0-3 tournament lvl
 		int x = rand()%100;
 
 
-		if(x<=y){
+		if(x<y){
 			cout<<"Congrats! You won!"<<endl;
 			lvl++;
-			//TODO: increase karate_level if appropiate
+			_wins++;
+			if(lvl>_karate_lvl)
+				_karate_lvl=lvl;
+		}else if(x>y){
+			cout <<"You lost."<<endl<<endl;
+			_losses++;
+			return;
 		}else{
-			cout "You lost."<<endl<<endl;
+			cout<<"You tied."<<endl<<endl;
+			_draws++;
 			return;
 		}
 	}
@@ -1393,6 +1404,7 @@ void Chao::personality()
 
 void Chao::doctor()
 {
+
 	for(int i=0;i<5;i++){
 		if(_health[i]<=-80)
 			medicine(i);
@@ -1438,5 +1450,27 @@ void Chao::doctor()
 	cout << "Your Chao likes "<<(uint16_t)_fav_fruit<<" fruit."<<endl<<endl;
 	cout<<"Age\t\tTimes transformed"<<endl;
 	cout<<!(_type==CHILD)<<"\t\t"<<_reincarnations<<endl<<endl;
+
+	cout<<"Record"<<endl<<endl;
+
+	cout<<"Chao Race"<<endl;
+	cout<<"[ ";
+	for(int i=0;i<DARK_MEDAL;i++){
+		if(_medals[i]==true)
+			cout<<i+1;
+		
+		else
+			cout<<0;
+		cout<<" ";
+	}
+	cout<<"]"<<endl<<endl;
+
+	cout<<"Chao Karate"<<endl;
+	cout<<_wins<<" wins"<<endl;
+	cout<<_losses<<" losses"<<endl;
+	cout<<_draws<<" draws"<<endl;
+
+	cout<<"Rank"<<endl;
+	cout<<_karate_lvl<<endl<<endl;
 
 }
