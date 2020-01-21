@@ -1,5 +1,7 @@
 # chaoGame
 
+Chao Game is a command-line virtual pet video game.
+
 List of actions:
 
 1. name/rename your chao
@@ -7,4 +9,4 @@ List of actions:
 3. pet the chao
 4. fight in a karate tournament
 
-**list of actions is currently being expanded
+**Game is still under development and the list of actions, as well as UX will be continually updated.
