@@ -1,6 +1,6 @@
 # chaoGame
 
-Chao Game is a command-line virtual pet video game based on the chaos from Sonic Adventure 2:Battle.
+Chao Game is a command-line virtual pet video game based on the chaos from Sonic Adventure 2: Battle.
 
 List of actions:
 
