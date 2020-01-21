@@ -15,6 +15,8 @@ List of actions:
 
 **To install and play the game type the following commands:
 
+`
 make
 
 ./playChao
+`
