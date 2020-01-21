@@ -10,3 +10,11 @@ List of actions:
 4. fight in a karate tournament
 
 **Game is still under development and the list of actions, as well as UX will be continually updated.
+
+**Game developed for Linux command line
+
+**To install and play the game type the following commands:
+
+make
+
+./playChao
