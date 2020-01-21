@@ -17,6 +17,5 @@ List of actions:
 
 ```
 make
-
 ./playChao
 ```
