@@ -21,7 +21,6 @@ int main(){
 	cout << "Choose your character:"<<endl;
 	cout << "0-Sonic, 1-Shadow, 2-Tails,3-Eggman, 4-Knuckles, 5-Rouge"<<endl;
 	cin>>character;
-	cout << "Welcome, " <<character << ". Press 1 to get a chao egg."<<endl;
 
 	cin>>input;
 
