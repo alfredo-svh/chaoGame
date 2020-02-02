@@ -121,6 +121,11 @@ Chao::Chao(uint8_t egg_color)
 Chao::Chao(Chao parent1, Chao parent2)
 {
 	//TODO: understand genetics
+	// allele1 = random(parent1.allele1, parent1.allele2)
+	//allele2 = random(parent2.allele1, parent2.allele2)
+	//fenotype = dominantvsrecessive(allel1, allele2)
+	
+	//normal color recessive!!
 
 }
 
