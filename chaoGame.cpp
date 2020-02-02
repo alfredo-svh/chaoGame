@@ -21,10 +21,17 @@ int main(){
 	cout << "Choose your character:"<<endl;
 	cout << "0-Sonic, 1-Shadow, 2-Tails,3-Eggman, 4-Knuckles, 5-Rouge"<<endl;
 	cin>>character;
+	
+	cout << "Welcome. Press 1 to start"<<endl;
 
 	cin>>input;
 
 	if(input ==1){
+		//TODO: try to read savefile
+		
+		//Else{ 
+		//	create savefile
+		
 		egg_color = rand() % 54;
 		Chao chao1(egg_color);
 
@@ -33,6 +40,8 @@ int main(){
 		this_thread::sleep_for(chrono::seconds(3));
 		chao1.born(garden);
 		cout << "The egg hatched! Your new chao is born!"<<endl;
+		
+		//}
 
 		while(1){
 			cout<< "What do you wanna do next?"<<endl;
@@ -70,7 +79,9 @@ int main(){
 		}
 	}
 
-	cout << "Goodbye! Changes will not be saved"<<endl;
+	cout << "Goodbye!"<<endl;
+	
+	//TODO: save changes to savefile
 
 	return 0;
 
