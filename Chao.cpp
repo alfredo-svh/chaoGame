@@ -126,6 +126,8 @@ Chao::Chao(Chao parent1, Chao parent2)
 	//fenotype = dominantvsrecessive(allel1, allele2)
 	
 	//normal color recessive!!
+	//shiny dominant allele
+	//no_texture is recessive, all other textures: dominant
 
 }
 
