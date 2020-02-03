@@ -30,6 +30,8 @@ Chao::Chao(uint8_t egg_color)
 	_swim_fly = 0.0;
 	_transformation_magnitude = 0;
 
+	//TODO bell curve grades
+	
 	for(int i=0;i<7;i++){
 		_bars[i] = 0;
 		_grades[i] = rand() % 6;
@@ -300,6 +302,7 @@ void Chao::born(uint8_t garden)
 
 uint8_t Chao::evolve()
 {
+	//TODO increase appropiate grades gene (not necessarily grades1)
 	if(_swim_fly <= -0.5 && -_swim_fly >= fabs(_run_power)){
 		_type = NEU_SWI;
 		if(_grades[SWIM]<S){
