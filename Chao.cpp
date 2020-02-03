@@ -30,7 +30,7 @@ Chao::Chao(uint8_t egg_color)
 	_swim_fly = 0.0;
 	_transformation_magnitude = 0;
 
-	//TODO bell curve grades
+	//TODO bell curve grades around C (make S rare)
 	
 	for(int i=0;i<7;i++){
 		_bars[i] = 0;
