@@ -27,10 +27,10 @@ int main(){
 	cin>>input;
 
 	if(input ==1){
-		//TODO: try to read savefile
+		//TODO: try to read savefile (.chsv)
 		
 		//Else{ 
-		//	create savefile
+		//	create savefile chao1.chsv
 		
 		egg_color = rand() % 54;
 		Chao chao1(egg_color);
