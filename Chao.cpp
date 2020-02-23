@@ -9,6 +9,7 @@ using namespace std;
 
 extern uint16_t garden;
 extern uint16_t character;
+
    
 
 Chao::Chao(uint8_t egg_color)
@@ -408,6 +409,7 @@ void Chao::name_chao(std::string name)
 
 void Chao::eat(uint8_t fruit, uint8_t character)
 {
+	//TODO refactor code
 	heart(character);
 
 	if(_emotions[HUNGER]<=500)
