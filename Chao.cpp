@@ -30,13 +30,26 @@ Chao::Chao(uint8_t egg_color)
 	_swim_fly = 0.0;
 	_transformation_magnitude = 0;
 
-	//TODO bell curve grades around C (make S rare)
-	
+	int r;
 	for(int i=0;i<7;i++){
-		_bars[i] = 0;
-		_grades[i] = rand() % 6;
+		r = rand() % 101;
+		if(r<40)
+			grades[i] = 2;	//C rank
+		else if(r<60)
+			grades[i] = 1;	//D rank
+		else if(r<80)
+			grades[i] = 3;	//B rank
+		else if(r<90)
+			grades[i] = 0;	//E rank
+		else if(r<100)
+			grades[i] = 4;	//A rank
+		else
+			grades[i] = 5;	//S rank
+		
 		_grades1[i] = _grades[i];
 		_grades2[i] = _grades[i];
+		
+		_bars[i] = 0;
 		_levels[i] = 0;
 		_points[i] = 0;
 	}
