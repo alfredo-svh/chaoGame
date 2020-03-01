@@ -253,6 +253,8 @@ void Chao::increase_stat(uint8_t stat, int8_t val)
 
 void Chao::heart(uint8_t character)
 {
+	//TODO: move randomness to before call
+	// except in drives (100%)
 	srand(time(NULL));
 	uint8_t chance = rand() %4;
 
@@ -410,6 +412,7 @@ void Chao::name_chao(std::string name)
 void Chao::eat(uint8_t fruit, uint8_t character)
 {
 	//TODO refactor code
+	//if child and transformation magnitude >=1.0: evolve()
 	heart(character);
 
 	if(_emotions[HUNGER]<=500)
