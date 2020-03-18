@@ -19,7 +19,7 @@ Chao::Chao(uint8_t egg_color)
 	_name="";
 	_garden=NO_GARDEN;
 	_happiness=0;
-	_rem_lifespan = 3800;
+	_rem_lifespan = 3000 + ( (rand()%11) *100);
 	_reincarnations = 0;
 	_animal_behaviors = F_NOAN;
 	_classroom_skills = NO_ABIL;
@@ -144,6 +144,8 @@ Chao::Chao(Chao parent1, Chao parent2)
 	//normal color recessive!!
 	//shiny dominant allele
 	//no_texture is recessive, all other textures: dominant
+	
+	//egg color normal
 
 }
 
@@ -292,7 +294,7 @@ void Chao::reset() //aka reincarnate()
 	}else{					//neutral
 		_alignment =0.0;
 	}
-	_rem_lifespan = 3800;
+	_rem_lifespan = 3000 + ( (rand()%11) *100);
 	_animal_behaviors =0;
 	_run_power = 0.0;
 	_swim_fly = 0.0;
@@ -373,12 +375,18 @@ uint8_t Chao::evolve()
 	if(_alignment>=0.5){ //hero
 		if(_type==NEU_CHAOS)
 			_eyes++;
+		else if(_eyes==MEAN){
+			_eyes = NORMAL_EYES;
+		}
 		_type++;
 	}
 	else if(_alignment<=-0.5){ //dark
 		if(_type==NEU_CHAOS)
 			_eyes+=2;
+		else
+			_eyes==MEAN;
 		_type+=2;
+		
 	}
 
 	//reset sliders
