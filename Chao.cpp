@@ -35,17 +35,17 @@ Chao::Chao(uint8_t egg_color)
 	for(int i=0;i<7;i++){
 		r = rand() % 101;
 		if(r<40)
-			grades[i] = 2;	//C rank
+			_grades[i] = 2;	//C rank
 		else if(r<60)
-			grades[i] = 1;	//D rank
+			_grades[i] = 1;	//D rank
 		else if(r<80)
-			grades[i] = 3;	//B rank
+			_grades[i] = 3;	//B rank
 		else if(r<90)
-			grades[i] = 0;	//E rank
+			_grades[i] = 0;	//E rank
 		else if(r<100)
-			grades[i] = 4;	//A rank
+			_grades[i] = 4;	//A rank
 		else
-			grades[i] = 5;	//S rank
+			_grades[i] = 5;	//S rank
 		
 		_grades1[i] = _grades[i];
 		_grades2[i] = _grades[i];
@@ -110,7 +110,8 @@ Chao::Chao(uint8_t egg_color)
 	for(int i=0;i<6;i++)
 		_health[i]=100;
 
-	_karate_lvl=_wins=_losses=_draws=0;
+	_wins=_losses=_draws=0;
+	_karate_lvl=0;
 	for(int i=0;i<DARK_MEDAL;i++){
 		_medals[i]=false;
 	}
@@ -136,7 +137,7 @@ Chao::Chao(uint8_t egg_color)
 
 Chao::Chao(Chao parent1, Chao parent2)
 {
-	//TODO: understand genetics
+	//TODO: genetics
 	// allele1 = random(parent1.allele1, parent1.allele2)
 	//allele2 = random(parent2.allele1, parent2.allele2)
 	//fenotype = dominantvsrecessive(allel1, allele2)
@@ -222,14 +223,15 @@ void Chao::remove_animalpart(){
 void Chao::increase_stat(uint8_t stat, int8_t val)
 {
 	if(val<0){
-		val = -val;
 
-		if(_bars[stat] - val <0){
+		if(_bars[stat] + val <0){
 			_bars[stat]=0;
 		}
 		else{
-			_bars[stat] -= val;
+			_bars[stat] += val;
 		}
+
+		return;
 	}
 
 	if(_bars[stat] + val <=99)
@@ -255,34 +257,25 @@ void Chao::increase_stat(uint8_t stat, int8_t val)
 
 void Chao::heart(uint8_t character)
 {
-	//TODO: move randomness to before call
-	// except in drives (100%)
-	srand(time(NULL));
-	uint8_t chance = rand() %4;
+	cout<<"<3"<<endl;
+	if(_happiness<100)
+		_happiness++;
 
-	if(chance==1){
-		cout<<"<3"<<endl;
-		if(_happiness<100)
-			_happiness++;
-
-		if(character%2==0){
-			if(_alignment>=0.95)
-				_alignment = 1.0;
-			else
-				_alignment+= 0.05;
-		}
-		else{
-			if(_alignment <= -0.95)
-				_alignment = -1.0;
-			else
-				_alignment -= 0.05;
-		}
-
-		if(_bonds[character]<100)
-			_bonds[character]++;
+	if(character%2==0){
+		if(_alignment>=0.95)
+			_alignment = 1.0;
+		else
+			_alignment+= 0.05;
+	}
+	else{
+		if(_alignment <= -0.95)
+			_alignment = -1.0;
+		else
+			_alignment -= 0.05;
 	}
 
-
+	if(_bonds[character]<100)
+		_bonds[character]++;
 }
 
 void Chao::reset() //aka reincarnate()
@@ -384,7 +377,7 @@ uint8_t Chao::evolve()
 		if(_type==NEU_CHAOS)
 			_eyes+=2;
 		else
-			_eyes==MEAN;
+			_eyes=MEAN;
 		_type+=2;
 		
 	}
@@ -421,7 +414,11 @@ void Chao::eat(uint8_t fruit, uint8_t character)
 {
 	//TODO refactor code
 	//if child and transformation magnitude >=1.0: evolve()
-	heart(character);
+
+	srand(time(NULL));
+	uint8_t chance = rand() %4;
+	if(chance ==1)
+		heart(character);
 
 	if(_emotions[HUNGER]<=500)
 		_emotions[HUNGER]=0;
@@ -621,8 +618,11 @@ void Chao::eat(uint8_t fruit, uint8_t character)
 }
 
 void Chao::pet(uint8_t character)
-{
-	heart(character);
+{	
+	srand(time(NULL));
+	uint8_t chance = rand() %4;
+	if(chance ==1)
+		heart(character);
 }
 
 void Chao::pickup(uint8_t character)
@@ -634,8 +634,10 @@ void Chao::pickup(uint8_t character)
 	cout << "Power: " << _points[POWER] << " Lv. "<< _levels[POWER]<<endl;
 	cout << "Stamina: " << _points[STAMINA] << " Lv. "<< _levels[STAMINA]<<endl;
 
-	heart(character);
-
+	srand(time(NULL));
+	uint8_t chance = rand() %4;
+	if(chance ==1)
+		heart(character);
 }
 
 void Chao::drop(uint8_t garden){
@@ -1228,6 +1230,8 @@ void Chao::take_animal(uint8_t animal, uint8_t character)
 		else
 			_alignment-=0.025;
 	}
+	
+	heart(character);
 
 }
 
@@ -1302,6 +1306,8 @@ void Chao::take_drive(uint8_t drive, uint8_t character)
 	}else{
 		_alignment-=0.025;
 	}
+
+	heart(character);
 
 }
 
@@ -1510,6 +1516,6 @@ void Chao::doctor()
 	cout<<_draws<<" draws"<<endl;
 
 	cout<<"Rank"<<endl;
-	cout<<_karate_lvl<<endl<<endl;
+	cout<<(int)_karate_lvl<<endl<<endl;
 
 }

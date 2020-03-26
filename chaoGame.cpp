@@ -72,6 +72,8 @@ int main(){
 					if(input<4)
 						chao1.karate(input);
 
+					break;
+
 				default:
 					cout << "Goodbye! Changes will not be saved"<<endl;
 					return 0;
