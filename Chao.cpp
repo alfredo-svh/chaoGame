@@ -1486,6 +1486,9 @@ void Chao::doctor()
 	cout << "Your Chao likes "<<(uint16_t)_fav_fruit<<" fruit."<<endl<<endl;
 	cout<<"Age\t\tTimes transformed"<<endl;
 	cout<<!(_type==CHILD)<<"\t\t"<<_reincarnations<<endl<<endl;
+	
+	cout<<"Condition"<<endl;
+	cout<<"Your Chao is very healthy. Please take good care of your Chao."<<endl<<endl;
 
 	cout<<"Record"<<endl<<endl;
 
