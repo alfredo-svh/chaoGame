@@ -1,5 +1,8 @@
 # chaoGame
 
+NOTICE: This project has remained incomplete as I make a full 3D game from this idea using Unreal Engine.
+
+
 Chao Game is a command-line virtual pet video game based on the chaos from Sonic Adventure 2: Battle.
 
 List of actions:
